@@ -98,8 +98,8 @@ void Engine::run_engine()
 		scene.ents[0]->rotate(0.0f, delta_time * 20.0f, 0.0f);
 		cam.update_free();
 		//rend.draw_skybox(&skybox, &cam);
-		//rend.draw_scene(scene, light_pos, &cam, free_cam);
-		rend.draw_pbr(&scene, &cam);
+		rend.draw_scene(&scene, &cam);
+		//rend.draw_pbr(&scene, &cam);
 		//rend.draw_ui(&texter, text);
 
 		glfwSwapBuffers(window);

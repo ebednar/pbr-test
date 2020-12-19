@@ -20,14 +20,13 @@ void Render::set_lights_pos(glm::vec3 **lights, int numb)
 	}
 }
 
-void Render::draw_scene(std::vector<Entity *> scene, glm::vec3** lights, Camera *cam, bool free_cam)
+void Render::draw_scene(Scene* scene, Camera *cam)
 {
-	int length = scene.size();
-	set_lights_pos(lights, 0);
+	int length = scene->ents.size();
 
 	for (int i = 0; i < length; ++i)
 	{
-		Entity	*ent = scene[i];
+		Entity* ent = scene->ents[i];
 		Model	*mod = ent->mod;
 		glUseProgram(mod->shader_id);
 		glActiveTexture(GL_TEXTURE0);
@@ -49,7 +48,7 @@ void Render::draw_scene(std::vector<Entity *> scene, glm::vec3** lights, Camera 
 		glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(projection));
 
 		glUniform1i(glGetUniformLocation(mod->shader_id, "lightNumb"), 3);
-		glUniform3fv(glGetUniformLocation(mod->shader_id, "lightPos"), 3, &light_pos[0].x);
+		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPos"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "viewPos"), cam->pos.x, cam->pos.y, cam->pos.z);
 		glUniform1i(glGetUniformLocation(mod->shader_id, "material.diffuse"), 0);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "material.specular"), 0.5f, 0.5f, 0.5f);

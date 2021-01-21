@@ -68,7 +68,7 @@ void Render::draw_pbr(Scene* scene, Camera* cam)
 	int length = scene->ents.size();
 	for (int i = 0; i < length; ++i)
 	{
-		Entity* ent = scene->ents[i];
+		Entity* ent = scene->ents[0];
 		Model* mod = ent->mod;
 		glUseProgram(mod->shader_id);
 		glBindVertexArray(mod->vao);
@@ -91,20 +91,10 @@ void Render::draw_pbr(Scene* scene, Camera* cam)
 		glUniform1f(glGetUniformLocation(mod->shader_id, "ao"), 1.0f);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "camPos"), cam->pos.x, cam->pos.y, cam->pos.z);
 		glUniform1f(glGetUniformLocation(mod->shader_id, "metallic"), 0.9f);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "roughness"), 0.9f, 0.05f, 1.0f);
+		glUniform1f(glGetUniformLocation(mod->shader_id, "roughness"), glm::clamp(0.1f, 0.05f, 1.0f));
 		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPositions[0]"), scene->point_lights[0].position.x, scene->point_lights[0].position.y, scene->point_lights[0].position.z);
 		glUniform3f(glGetUniformLocation(mod->shader_id, "lightColors[0]"), scene->point_lights[0].color.x, scene->point_lights[0].color.y, scene->point_lights[0].color.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPositions[1]"), scene->point_lights[1].position.x, scene->point_lights[1].position.y, scene->point_lights[1].position.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightColors[1]"), scene->point_lights[1].color.x, scene->point_lights[1].color.y, scene->point_lights[1].color.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPositions[2]"), scene->point_lights[2].position.x, scene->point_lights[2].position.y, scene->point_lights[2].position.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightColors[2]"), scene->point_lights[2].color.x, scene->point_lights[2].color.y, scene->point_lights[2].color.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightPositions[3]"), scene->point_lights[3].position.x, scene->point_lights[3].position.y, scene->point_lights[3].position.z);
-		glUniform3f(glGetUniformLocation(mod->shader_id, "lightColors[3]"), scene->point_lights[3].color.x, scene->point_lights[3].color.y, scene->point_lights[3].color.z);
-		for (int j = 0; j < scene->point_lights.size(); ++j)
-		{
-			//glUniform3f(glGetUniformLocation(mod->shader_id, ("lightPositions[" + std::to_string(j) + " ]").c_str()), scene->point_lights[j].position.x, scene->point_lights[j].position.y, scene->point_lights[j].position.z);
-			//glUniform3f(glGetUniformLocation(mod->shader_id, ("lightColors[" + std::to_string(j) + " ]").c_str()), scene->point_lights[j].color.x, scene->point_lights[j].color.y, scene->point_lights[j].color.z);
-		}
+
 		glDrawArrays(GL_TRIANGLES, 0, mod->ind_number);
 	}
 }

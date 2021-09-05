@@ -11,15 +11,15 @@
 class Engine {
 public:
 	Camera						cam;
-	double						delta_time = 0.0;
 	std::vector<Model *>		models;
 	Scene						scene;
 	Controls					controls;
 	Skybox						skybox;
 	Entity						*player;
+	std::vector<text_t*>		text;
+	double						delta_time = 0.0;
 	bool						free_cam;
 	bool						close_eng;
-	std::vector<text_t*>		text;
 public:
 			~Engine();
 	void	init_engine(int width, int height);
@@ -37,4 +37,6 @@ private:
 	double					old_time = 0.0;
 	double					timer = 0.0;
 	int						fps = 0;
+	int						width = 0;
+	int						height = 0;
 };

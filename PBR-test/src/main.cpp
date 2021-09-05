@@ -7,7 +7,7 @@ int		main(void)
 	Sandbox	sandbox;
 	
 	srand(time(NULL));
-	engine.init_engine(640, 480);
+	engine.init_engine(1280, 720);
 	sandbox.place_ent(&engine);
 	engine.run_engine();
 	return 0;

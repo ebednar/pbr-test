@@ -1,4 +1,10 @@
 #include "scene.h"
+#include <iostream>
+
+void	Scene::load_scene(const char* path)
+{
+	std::cout << "load scene " << path << std::endl;
+}
 
 void	Scene::add_entity(Entity* ent)
 {

@@ -15,11 +15,9 @@ class Render
 public:
 	Entity *player;
 public:
-	void	init();
-	void	set_lights_pos(glm::vec3 **lights, int numb);
-	void	draw_scene(Scene* scene, Camera* cam);
+	void	init(float width = 640.0, float height = 480.0);
+//	void	draw_scene(Scene* scene, Camera* cam);
 	void	draw_pbr(Scene *scene, Camera *cam);
-	void	draw_ui(ui_text *Texter, std::vector<text_t*> text);
 	void	draw_skybox(Skybox *skybox, Camera* cam);
 
 private:

@@ -525,6 +525,7 @@
     <ClInclude Include="include\glm\vec4.hpp" />
     <ClInclude Include="include\glm\vector_relational.hpp" />
     <ClInclude Include="include\khrplatform.h" />
+    <ClInclude Include="include\material.h" />
     <ClInclude Include="include\Model.h" />
     <ClInclude Include="include\pbr.h" />
     <ClInclude Include="include\Render.h" />
@@ -673,6 +674,8 @@
     <None Include="include\glm\gtx\vector_angle.inl" />
     <None Include="include\glm\gtx\vector_query.inl" />
     <None Include="include\glm\gtx\wrap.inl" />
+    <None Include="res\shaders\light_fragment.glsl" />
+    <None Include="res\shaders\light_vertex.glsl" />
     <None Include="res\shaders\pbr_frag.glsl" />
     <None Include="res\shaders\pbr_vert.glsl" />
   </ItemGroup>
@@ -684,6 +687,7 @@
     <ClCompile Include="src\events.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\material.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\Render.cpp" />
     <ClCompile Include="src\sandbox.cpp" />

@@ -1197,6 +1197,9 @@
     <ClInclude Include="include\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\glm\detail\func_common.inl">
@@ -1609,6 +1612,8 @@
     </None>
     <None Include="res\shaders\pbr_frag.glsl" />
     <None Include="res\shaders\pbr_vert.glsl" />
+    <None Include="res\shaders\light_fragment.glsl" />
+    <None Include="res\shaders\light_vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\glm\detail\glm.cpp">
@@ -1651,6 +1656,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

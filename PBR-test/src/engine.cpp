@@ -45,12 +45,11 @@ void Engine::init_engine(int width, int height)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	this->width = width;
+	this->height = height;
 	controls.yaw = cam.yaw;
 	controls.pitch = cam.pitch;
-	texter.init();
-	texter.set_shader("res/shaders/ui_text_vertex.glsl", "res/shaders/ui_text_fragment.glsl");
-	rend.init();
-	texter.vertex_buffer();
+	rend.init(static_cast<float>(width), static_cast<float>(height));
 	std::vector<std::string> faces;
 	faces.push_back("res/cubemaps/right.jpg");
 	faces.push_back("res/cubemaps/left.jpg");
@@ -76,11 +75,10 @@ void Engine::run_engine()
 		if (timer >= 1.0)
 		{
 			timer -= 1.0;
-			std::cout << "fps - " << fps << std::endl;
+			//std::cout << "fps - " << fps << std::endl;
 			fps = 0;
 		}
 		old_time = glfwGetTime();
-
 
 		cam.speed = 8.0f * delta_time;
 		if (controls.keys[GLFW_KEY_W])
@@ -95,10 +93,9 @@ void Engine::run_engine()
 		cam.pitch = controls.pitch;
 
 		cam.update_free();
-		//rend.draw_skybox(&skybox, &cam);
+		rend.draw_skybox(&skybox, &cam);
 		//rend.draw_scene(&scene, &cam);
 		rend.draw_pbr(&scene, &cam);
-		//rend.draw_ui(&texter, text);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
